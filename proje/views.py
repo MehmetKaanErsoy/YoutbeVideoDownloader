@@ -9,7 +9,7 @@ from django.contrib import messages
 
 
 def home(request):
-    return render(request, 'anaekran.html')
+    return render(request, 'index.html')
 
 
 def download(request):
