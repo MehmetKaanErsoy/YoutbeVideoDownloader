@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from proje.views import home, download, indirme_bitti
 
+
 app_name = 'downloaddd'
 urlpatterns = [
     path('admin/', admin.site.urls),
