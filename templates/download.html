@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+</head>
+<body>
+
+<center>
+    Başlık : {{ title }}
+
+</center>
+<div class="col-md-12">
+    <table class="table table-striped table-valign-middle" style="margin-top: 15px">
+        <thead>
+        <tr class="bg-gray-dark ">
+            <th>Boyut</th>
+            <th>Kalite</th>
+            <th>Tip</th>
+            <td>İndir</td>
+        </tr>
+        </thead>
+        {% for i in cozunurlukler %}
+            <tbody>
+            <tr>
+                <td>{{ i.filesize }}</td>
+                <td>{{ i.resolution }}</td>
+                <td>{{ i.type }}</td>
+                <td><a onclick="return confirm('{{ i.resolution }} kalitesinde indirme onaylansın mı?')"
+                       href="/indir/{{ i.resolution }}"
+                       class="btn btn-primary" style="width: 80px">İndir</a></td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+    </table>
+</div>
+
+
+<script src="{% static 'plugins/ekko-lightbox/ekko-lightbox.js' %}"></script>
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+</body>
+</html>

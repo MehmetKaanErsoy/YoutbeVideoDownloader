@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}" style="font-size: 25px">Youtube Video İndirme</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+<div class="" style="margin-top: 20px">
+    {% if messages %}
+        {% for message in messages %}
+
+            {% if message.tags == "info" %}
+                <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4><i class="fas fa-info-circle"></i> Bilgilendirme!</h4>
+                    {{ message }}
+                </div>
+            {% elif message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4><i class="fas fa-times"></i> Hata!</h4>
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4><i class="icon fa fa-check"></i> Başarılı!</h4>
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+<form action="indir/" method="get">
+    {% csrf_token %}
+    <center style="margin-top: 100px">
+        <h1 style="margin-top: -10px">İndirmek İstediğiniz Videonun URL Adresinizi Giriniz...</h1>
+        <input type="text" name="search" placeholder="Lütfen İndirmek İstediğini URL Adresini Giriniz."
+               style="width:60%;height: 50px;border-style: solid;border-radius: 10px;margin-top: 30px" required>
+        <br>
+        <button class="btn btn-dark" style="height: 60px;margin-top: 27px;width: 20%;font-size: 25px">Arama Yap
+        </button>
+    </center>
+</form>
+
+</body>
+</html>
